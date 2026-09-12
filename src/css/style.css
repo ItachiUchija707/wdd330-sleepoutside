@@ -170,6 +170,7 @@ button {
 
 /* Styles for product lists */
 .product-card {
+  position: relative;
   flex: 1 1 45%;
   margin: 0.25em;
   padding: 0.5em;
@@ -189,6 +190,26 @@ button {
 
 .card__name {
   font-size: 1em;
+}
+
+/* discount section styling */
+.discount-section {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background-color: #b71c1c;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--small-font);
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #767676;
+  margin-right: 0.35rem;
+  font-size: 0.9em;
 }
 
 /* End product list card */
