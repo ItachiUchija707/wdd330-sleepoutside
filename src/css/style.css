@@ -224,17 +224,6 @@ button {
   width: 100%;
 }
 
-.product-detail {
-  position: relative;
-  display: inline-block;
-}
-
-.product-detail, .discount-section {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-}
-
 /* Start cart list card styles */
 .cart-card {
   display: grid;
