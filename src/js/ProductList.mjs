@@ -1,8 +1,7 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-
-  // Discount task changes
+ // Discount task changes
   // This checks if the final price of product is less than the suggested price to detremine if it has a discount
   const hasDiscount = product.FinalPrice < product.SuggestedRetailPrice;
   // Then this calculates how much dollars are being saved
@@ -15,34 +14,42 @@ function productCardTemplate(product) {
   $${product.FinalPrice.toFixed(2)}</p>`
     : `<p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>`;
   
-  return `<li class="product-card">
-    <a href="product_pages/?product=${product.Id}">
+
+  return `
+    <li class="product-card">
+      <a href="product_pages/?product=${product.Id}">
       ${discountSection}
-      <img src="${product.Image}" alt="Image of ${product.Name}">
-      <h2 class="card__brand">${product.Brand.Name}</h2>
-      <h3 class="card__name">${product.NameWithoutBrand}</h3>
-      ${displayPrice}
-    </a>
-  </li>`
+        <img src="${product.Image}" alt="${product.Name}">
+        <h2>${product.Brand.Name}</h2>
+        <h3>${product.Name}</h3>
+       ${displayPrice}
+      </a>
+    </li>
+    `;
+ 
 }
-/* <p class="product-card__price">$${product.ListPrice}</p> section removed from return element */
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
-    // You passed in this information to make the class as reusable as possible.
-    // Being able to define these things when you use the class will make it very flexible
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
 
   async init() {
-    // the dataSource will return a Promise...so you can use await to resolve it.
     const list = await this.dataSource.getData();
-    this.renderList(list);
-    // next, render the list – ** future **
+    const selectedProducts = [list[0],list[1],list[3],list[5]];
+
+    this.renderList(selectedProducts);
   }
-  renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+
+  renderList(selectedProducts) {
+    // const htmlStrings = list.map(productCardTemplate);
+    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+
+    // apply use new utility function instead of the commented code above
+    renderListWithTemplate(productCardTemplate, this.listElement, selectedProducts);
+
   }
+
 }
