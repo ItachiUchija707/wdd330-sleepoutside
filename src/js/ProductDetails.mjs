@@ -31,6 +31,13 @@ export default class ProductDetails {
   }
 }
 
+const suggested = Number(product.SuggestedRetailPrice);
+const finalPrice = Number(product.FinalPrice);
+const discount = suggested - finalPrice;
+
+const discountBadge = discount > 0 ? `<span class="discount-section">Save $${discount.toFixed(2)}</span>` : '';
+const oldPrice = discount > 0 ? `<span class="original-price">$${suggested.toFixed(2)}</span>` : '';
+
 function productDetailsTemplate(product) {
   document.querySelector('h2').textContent = product.Brand.Name;
   document.querySelector('h3').textContent = product.NameWithoutBrand;
@@ -39,7 +46,7 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById('productPrice').textContent = product.FinalPrice;
+  document.getElementById('productPrice').innerHTML = `${oldPrice}$${finalPrice.toFixed(2)} ${discountBadge}`;
   document.getElementById('productColor').textContent = product.Colors[0].ColorName;
   document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
