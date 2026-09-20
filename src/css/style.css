@@ -224,6 +224,10 @@ button {
   width: 100%;
 }
 
+.product-detail__image-wrap {
+  position: relative;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
