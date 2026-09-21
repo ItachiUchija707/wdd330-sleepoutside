@@ -39,7 +39,24 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById('productPrice').innerHTML = product.FinalPrice;
+  const suggested = Number(product.SuggestedRetailPrice);
+  const finalPrice = Number(product.FinalPrice);
+  const discount = suggested - finalPrice;
+
+  const wrap = document.querySelector('.product-detail__image-wrap');
+  wrap.querySelector(".discount-section")?.remove();
+  if (discount > 0) {
+    const badge = document.createElement('span');
+    badge.className = 'discount-section';
+    badge.textContent = `Save $${discount.toFixed(2)}`;
+    wrap.prepend(badge);
+
+    document.getElementById('productPrice').innerHTML =
+      `<span class="original-price">$${suggested.toFixed(2)}</span>$${finalPrice.toFixed(2)}`;
+  } else {
+    document.getElementById('productPrice').innerHTML = `$${finalPrice.toFixed(2)}`;
+  }
+  
   document.getElementById('productColor').textContent = product.Colors[0].ColorName;
   document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
