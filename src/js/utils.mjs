@@ -64,3 +64,9 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElemnt);
   renderWithTemplate(footerTemplate, footerElemnt);
 }
+
+export function renderCartItemsCount() {
+  const cartCantItems = getLocalStorage("so-cart") || [];
+  document.querySelector(".cart-cant-items").textContent = cartCantItems.length;
+}
+

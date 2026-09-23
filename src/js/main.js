@@ -1,11 +1,6 @@
-// import ProductData from "./ProductData.mjs";
-// import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, renderCartItemsCount } from "./utils.mjs";
 
-loadHeaderFooter();
-
-// const dataSource = new ProductData("tents");
-// const element = document.querySelector(".product-list");
-// console.log("listElemnet:",element);
-// const productList = new ProductList("Tents", dataSource, element);
-// productList.init();
+document.addEventListener('DOMContentLoaded', async() => {
+    await loadHeaderFooter();
+    renderCartItemsCount();
+});

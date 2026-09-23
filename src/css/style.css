@@ -121,6 +121,7 @@ button {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  display: inline-block;
 }
 
 .cart svg {
@@ -129,6 +130,22 @@ button {
 
 .cart:hover svg {
   fill: gray;
+}
+
+.cart-cant-items {
+  position: absolute;
+  top: -1px;
+  right: -8px;
+  background-color: #f4c27a;
+  color: #5a3db5;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 /* End cart icon styles */

@@ -1,11 +1,15 @@
-import { setLocalStorage, getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, loadHeaderFooter, renderCartItemsCount } from "./utils.mjs";
 
-loadHeaderFooter();
+document.addEventListener('DOMContentLoaded', async() => {
+    await loadHeaderFooter();
+    renderCartItemsCount();
+});
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || []; // if there is no cart in local storage, it will return an empty array, so we can still render the cart page without errors.
   const htmlItems = cartItems.map((item, i) => cartItemTemplate(item, i)); // now the cartItemTemplate receives the item and the index of the item in the array, so we can use it to remove the item from the cart when the button is clicked.
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  
   }
 
 
@@ -42,5 +46,7 @@ renderCartContents();
 document.querySelector(".product-list").addEventListener("click", (event) => {
   if (event.target.classList.contains("remove-btn")) {
     removeItemFromCart(event.target.dataset.index);
+    renderCartItemsCount();
+
   }
 });

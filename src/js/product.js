@@ -1,8 +1,11 @@
-import { getParam, loadHeaderFooter } from "./utils.mjs";
+import { getParam, loadHeaderFooter, renderCartItemsCount } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
-loadHeaderFooter();
+document.addEventListener('DOMContentLoaded', async() => {
+    await loadHeaderFooter();
+    renderCartItemsCount();
+});
 
 const dataSource = new ProductData("tents");
 const productId = getParam("product");
