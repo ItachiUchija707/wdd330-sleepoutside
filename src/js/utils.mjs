@@ -67,6 +67,21 @@ export async function loadHeaderFooter() {
 
 export function renderCartItemsCount() {
   const cartCantItems = getLocalStorage("so-cart") || [];
-  document.querySelector(".cart-cant-items").textContent = cartCantItems.length;
+  const cartClassElement = document.querySelector("#cart-cant-items");
+
+  if (cartCantItems.length > 0) {
+    if (cartClassElement.classList.contains("none")) {
+      cartClassElement.classList.replace("none","cart-cant-items");
+      cartClassElement.textContent = cartCantItems.length;
+    }
+    else
+      cartClassElement.textContent = cartCantItems.length;
+  }
+    
+  else {
+    cartClassElement.classList.replace("cart-cant-items", "none");
+    cartClassElement.textContent = "";
+  }  
+    
 }
 
