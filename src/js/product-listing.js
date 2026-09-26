@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", async() => {
     await loadHeaderFooter();
     initSearch();
     renderCartItemsCount();
+    if (search) {
+      const input = document.querySelector("#search-input");
+      if (input) input.value = search;
+    }
 });
 
 const category = getParam("category");

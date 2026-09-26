@@ -129,10 +129,12 @@ export default class ProductList {
   async init(title = null) {
     let list;
     if (this.isSearch) {
-      list = await this.dataSource.searchProducts(this.category);
-      list = rankSearchResults(list, this.category);
+      const catalog = await this.dataSource.getCatalog();
+      list = rankSearchResults(catalog, this.category);
     } else {
-      list = await this.dataSource.getData(this.category);
+      const catalog = await this.dataSource.getCatalog();
+      const byCat = catalog.filter((p) => p.__sourceCat === this.category);
+      list = byCat.length > 0 ? byCat : await this.dataSource.getData(this.category);
     }
 
     this.renderList(list);
