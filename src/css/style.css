@@ -148,6 +148,39 @@ button {
   font-size: 14px;
 }
 
+/* Search styles */
+.search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+  padding-top: 1em;
+}
+
+.search form {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.search input {
+  flex: 1;
+  padding: 0.5em;
+  font-size: var(--small-font);
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+}
+
+.search button {
+  padding: 0.5em 1em;
+  margin: 0;
+  font-size: var(--small-font);
+  border-radius: 4px;
+}
+
+/* End search styles */
+
 /* End cart icon styles */
 
 .mission {

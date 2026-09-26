@@ -55,14 +55,26 @@ export async function loadTemplate(path) {
 
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
 
   const headerElemnt = document.querySelector("#main-header");
   const footerElemnt = document.querySelector("#main-footer");
 
   renderWithTemplate(headerTemplate, headerElemnt);
   renderWithTemplate(footerTemplate, footerElemnt);
+}
+
+export function initSearch() {
+  const form = document.querySelector("#search-form");
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = document.querySelector("#search-input");
+    const q = input.value.trim();
+    if (!q) return;
+    window.location.href = `/product_listing/index.html?search=${encodeURIComponent(q)}`;
+  });
 }
 
 export function renderCartItemsCount() {
