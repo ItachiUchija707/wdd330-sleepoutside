@@ -1,7 +1,9 @@
-async function convertToJson(res) {
+export async function convertToJson(response) {
+  const jsonResponse = await response.json();
   if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error('Bad Response');
-  }
+    return jsonResponse;
+  } throw {
+    name: "serviceError",
+    message: jsonResponse,
+  };
 }
