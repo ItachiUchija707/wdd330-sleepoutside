@@ -34,19 +34,40 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.list = [];
   }
-
   async init() {
-    const list = await this.dataSource.getData(this.category);
-
-    this.renderList(list);
+    this.list = await this.dataSource.getData(this.category);
+    this.renderList(this.list);
     document.querySelector(".title").textContent = this.category;
 
+    document
+      .getElementById("sort-select")
+      ?.addEventListener("change", (event) => {
+        this.sortList(event.target.value);
+      });
   }
+  sortList(sortBy) {
+    const sorted = [...this.list];
 
+    if (sortBy === "name-asc") {
+      sorted.sort((a, b) => a.Name.localeCompare(b.Name));
+    } else if (sortBy === "name-desc") {
+      sorted.sort((a, b) => b.Name.localeCompare(a.Name));
+    } else if (sortBy === "price-asc") {
+      sorted.sort((a, b) => a.FinalPrice - b.FinalPrice);
+    } else if (sortBy === "price-desc") {
+      sorted.sort((a, b) => b.FinalPrice - a.FinalPrice);
+    }
+    this.renderList(sorted);
+  }
   renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
-
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      "afterbegin",
+      true,
+    );
   }
-
 }
