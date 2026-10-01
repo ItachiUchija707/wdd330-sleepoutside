@@ -1,6 +1,7 @@
-import { loadHeaderFooter, renderCartItemsCount } from "./utils.mjs";
+import { loadHeaderFooter, renderCartItemsCount, initSearch } from "./utils.mjs";
 
-document.addEventListener('DOMContentLoaded', async() => {
+document.addEventListener("DOMContentLoaded", async() => {
     await loadHeaderFooter();
+    initSearch();
     renderCartItemsCount();
 });
