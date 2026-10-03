@@ -315,6 +315,8 @@ button {
   font-size: 1em;
 }
 
+
+
 /* discount section styling */
 .discount-section {
   position: absolute;
@@ -387,6 +389,40 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+/* To hide the total amount of cart */
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  max-width: 400px;
+  margin-left: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.cart-total, .cart-total-items {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cart-total, .cart-total-items span {
+  color: #6b7600;
+}
+
+.cart-total-items span {
+  color: #4229ff;
 }
 
 @media screen and (min-width: 500px) {

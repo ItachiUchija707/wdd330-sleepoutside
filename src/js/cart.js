@@ -10,6 +10,8 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || []; // if there is no cart in local storage, it will return an empty array, so we can still render the cart page without errors.
   const htmlItems = cartItems.map((item, i) => cartItemTemplate(item, i)); // now the cartItemTemplate receives the item and the index of the item in the array, so we can use it to remove the item from the cart when the button is clicked.
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  calulateCartTotalItems(cartItems);
   
   }
 
@@ -51,3 +53,28 @@ document.querySelector(".product-list").addEventListener("click", (event) => {
 
   }
 });
+
+function calulateCartTotalItems(cartItems) {
+  const cartFooter = document.querySelector(".cart-footer");
+  const cartTotal = document.querySelector(".cart-total");
+  const cartTotalItems = document.querySelector(".cart-total-items");
+
+  if (cartItems.length > 0) {
+    cartFooter.classList.remove("hide");
+    const total = cartItems.reduce((sum, cartItem) => {
+      
+      return sum + (cartItem.FinalPrice * cartItem.Quantity);
+    }, 0);
+
+    const totalItems = cartItems.reduce((sum, item) => 
+      sum + item.Quantity, 0);
+
+
+    cartTotalItems.innerHTML = `<span>Products in cart:</span><span>${totalItems}</span>`;
+    cartTotal.innerHTML = `<span>Total:</span><span>$${total.toFixed(2)}</span>`;
+    
+  }
+  else {
+    cartFooter.classList.replace("cart-footer", "hide");
+  }
+}
