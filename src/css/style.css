@@ -397,6 +397,9 @@ button {
 }
 
 .cart-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   max-width: 400px;
   margin-left: auto;
   margin-top: 2rem;
@@ -424,6 +427,80 @@ button {
 .cart-total-items span {
   color: #4229ff;
 }
+
+.checkout-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #667300;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-align: center;
+
+  & a{
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.checkout-btn:hover {
+  background-color: #556000;
+}
+
+/* CSS to cart checkout */
+
+.checkout-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin: 2rem auto;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-form fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.checkout-form label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.order-summary {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  height: fit-content;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.order-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #667300;
+}
+
 
 @media screen and (min-width: 500px) {
   body {

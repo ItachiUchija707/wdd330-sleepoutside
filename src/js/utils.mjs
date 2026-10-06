@@ -64,14 +64,14 @@ export async function loadHeaderFooter() {
   renderWithTemplate(footerTemplate, footerElemnt);
 }
 
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 let searchKeyCaptureInstalled = false;
 let catalogPromise = null;
 
 export function getSharedCatalog() {
   if (!catalogPromise) {
-    catalogPromise = new ProductData().getCatalog().catch((err) => {
+    catalogPromise = new ExternalServices().getCatalog().catch((err) => {
       catalogPromise = null;
       throw err;
     });
@@ -220,14 +220,18 @@ export function renderCartItemsCount() {
     0,
   );
   const cartClassElement = document.querySelector("#cart-cant-items");
+
   if (!cartClassElement) return;
 
   if (totalCount > 0) {
+    
     if (cartClassElement.classList.contains("none")) {
       cartClassElement.classList.replace("none", "cart-cant-items");
+      
     }
     cartClassElement.textContent = totalCount;
   } else {
+   
     cartClassElement.classList.replace("cart-cant-items", "none");
     cartClassElement.textContent = "";
   }
